@@ -2,33 +2,10 @@
 
 The official template for synchronizing Typescript/Javascript from your computer to the game.
 
-[Step by step install](BeginnersGuide.md)
-
-[Docker install guide](DockerGuide.md) (optional) 
-
-[Learn more about Typescript](https://www.typescriptlang.org/docs/)
-
 ## About
 
 This template uses the Typescript compiler and the Remote File API system to synchronize Typescript to your game.
 Due to the usage of the RFA system, it works with Web and Electron (Steam) versions of the game.
-
-## Prerequisites
-
-[Node.js](https://nodejs.org/en/download/) is needed for compiling typescript and installing dependencies.
-
-[See here for step by step installation](BeginnersGuide.md) if you'd like help with installing Node and/or connecting to the game.
-
-Alternatively see [Docker install guide](DockerGuide.md) (optional) that installs nodejs and the Remote File API in an isolated container.
-
-## Quick start
-
-Download the template to your computer and install everything it requires:
-```
-git clone https://github.com/bitburner-official/typescript-template
-cd typescript-template
-npm i
-```
 
 ### How to use this template
 
@@ -39,10 +16,6 @@ Have it running in the background so that it all happens automatically.
 
 For Bitburner to receive any files, you need to enter the port `npm run watch` logs to the terminal
 in the Remote API section of the game settings, and press the connect button.
-
-[See here for step by step installation](BeginnersGuide.md) if you'd like help with installing Node and/or connecting to the game.
-
-Alternatively see [Docker install guide](DockerGuide.md) (optional) that installs nodejs and the Remote File API in an isolated container.
 
 ## Advanced
 ### Imports
