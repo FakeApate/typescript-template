@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "watch",
+			"group": "none",
+			"problemMatcher": [],
+			"label": "npm: watch",
+			"detail": "npm run watch:init && npm run watch:all",
+			"runOptions": {
+				"runOn": "folderOpen"
+			}
+		}
+	]
+}
