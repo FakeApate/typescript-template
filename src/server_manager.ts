@@ -27,9 +27,9 @@ export async function main(ns: NS): Promise<void> {
 	}*/
 
 	for( const server of servers){
-		ns.tprint(`[${server}] ${ns.getServerMaxRam(server)}`)
+		ns.tprint(`[${server}] ${ns.formatRam(ns.getServerMaxRam(server))}`)
 	}
-    /*for(const s in ramLevels){
+    for(const s in ramLevels){
         ns.tprint(`${ns.formatRam(ramLevels[s])} (${Number(s)+1}): ${ns.formatNumber(ns.getPurchasedServerCost(ramLevels[s]))}`)
-    }*/
+    }
 }

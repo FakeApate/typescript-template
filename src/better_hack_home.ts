@@ -8,12 +8,9 @@ export async function main(ns: NS): Promise<void> {
 	ns.tail();
 	ns.disableLog("sleep");
 	ns.clearLog();
-	const pServs: Runner[] = [];
-	for(const ps of ns.getPurchasedServers()){
-		pServs.push(new Runner(ns, ps, 0))
-	}
+	const home = new Runner(ns, "home", 50);
 	const target = new Target(ns.getServer(ns.args[0] as string), 1)
-	const batch = new Batch("Batch 0", pServs, target);
+	const batch = new Batch("Batch 1", [home], target);
 	await batch.prepare(ns);
 	await batch.run(ns);
 }

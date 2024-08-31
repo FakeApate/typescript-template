@@ -1,15 +1,27 @@
 import { NS } from "@ns";
 
 export async function main(ns: NS) {
-  ns.disableLog("sleep")
+	ns.disableLog("sleep");
 	const ramCost = ns.getScriptRam("share.js", "home");
-	const server = ns.getServer("home");
-	const threads = Math.floor((server.maxRam - server.ramUsed - 200) / ramCost);
+	const pServers = ns.getPurchasedServers().map((s) => {
+		const serv = ns.getServer(s);
+		const threads = 75000;
+		return {
+			hostname: serv.hostname,
+			threads: threads,
+		};
+	});
+
+	pServers.forEach((s) => {
+		ns.scp("share.js", s.hostname, "home");
+	});
 	while (true) {
-		const pid =  ns.exec("share.js", server.hostname, threads);
-    while (ns.getRunningScript(pid)) {
-      await ns.sleep(500);
-    }
-    await ns.sleep(100);
-  }
+		const pids = pServers.map((p) => {
+			return ns.exec("share.js", p.hostname, p.threads);
+		});
+		while (pids.some((pid) => ns.getRunningScript(pid) !== null)) {
+			await ns.sleep(500);
+		}
+		await ns.sleep(100);
+	}
 }

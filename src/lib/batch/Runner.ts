@@ -1,6 +1,6 @@
 import { NS } from "@ns";
 import {
-	IRamPerThread,
+	IFunctionInfo,
 	ISecurityIncreasePerThread,
 	IExecutionTime,
 	getScriptRam,
@@ -22,7 +22,7 @@ export class Runner {
 	maxRam!: number;
 	ramUsed!: number;
 	reservedRam = 0;
-	ramPerThread!: IRamPerThread;
+	ramPerThread!: IFunctionInfo;
 	securityChangePerThread!: ISecurityIncreasePerThread;
 	executionTime!: IExecutionTime;
 
@@ -58,6 +58,6 @@ export class Runner {
 	 * Get threads needed to run weak to compensate the security increase
 	 */
 	public getSecCompensation(secInc: number): number {
-		return Math.ceil(Math.max(secInc / this.securityChangePerThread.Weak(), 1));
+		return Math.max(Math.ceil(secInc / this.securityChangePerThread.Weak()), 1);
 	}
 }

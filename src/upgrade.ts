@@ -1,15 +1,13 @@
 import { NS } from "@ns";
 
 export async function main(ns: NS): Promise<void> {
-	const i = 15;
-	ns.tprint(ns.formatNumber(ns.getPurchasedServerUpgradeCost("pserv-0",2**i)));
-	ns.tprint(ns.formatNumber(ns.getPurchasedServerUpgradeCost("pserv-1",2**i)));
-	ns.tprint(ns.formatNumber(ns.getPurchasedServerUpgradeCost("pserv-2",2**i)));
-	ns.tprint(ns.formatNumber(ns.getPurchasedServerUpgradeCost("pserv-3",2**i)));
-	ns.tprint(ns.formatNumber(ns.getPurchasedServerUpgradeCost("pserv-4",2**i)));
-	ns.upgradePurchasedServer("pserv-0",2**i)
-	ns.upgradePurchasedServer("pserv-1",2**i)
-	ns.upgradePurchasedServer("pserv-2",2**i)
-	ns.upgradePurchasedServer("pserv-3",2**i)
-	ns.upgradePurchasedServer("pserv-4",2**i)
+	const u = 10;
+	let cost = 0;
+	for (let i = 0; i < 25; i++) {
+		const hostname = "pserv-" + i;
+		const upgradeCost = ns.getPurchasedServerUpgradeCost(hostname, 2 ** u);
+		cost += Math.max(0,upgradeCost);
+		ns.tprint(`${hostname} ${ns.formatNumber(upgradeCost)}`);
+	}
+	ns.tprint(`Sum: ${ns.formatNumber(cost)}`)
 }

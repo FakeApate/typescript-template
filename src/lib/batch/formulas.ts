@@ -22,7 +22,7 @@ export const Scripts = {
 /**
  * Ram needed to execute script with one thread.
  */
-export interface IRamPerThread {
+export interface IFunctionInfo {
 	Weak: number;
 	Grow: number;
 	Hack: number;
@@ -51,7 +51,7 @@ export interface IExecutionTime {
  * @param ns Netscript Context
  * @returns RamPerThread
  */
-export function getScriptRam(ns: NS): IRamPerThread {
+export function getScriptRam(ns: NS): IFunctionInfo {
 	return {
 		Weak: ns.getScriptRam(Scripts.Weak),
 		Grow: ns.getScriptRam(Scripts.Grow),
@@ -85,3 +85,18 @@ export function getExecutionTimes(ns: NS): IExecutionTime {
 		Hack: (s: Target) => ns.getHackTime(s.hostname),
 	};
 }
+
+/**
+ * 
+ * @param ns 
+ * @param target 
+ * @returns Returns amount of time in milliseconds it takes to execute Netscript functions.
+ */
+export function getExecutionTimes2(ns: NS, target: Target): IFunctionInfo {
+	return {
+		Weak: ns.getWeakenTime(target.hostname),
+		Grow: ns.getGrowTime(target.hostname),
+		Hack: ns.getHackTime(target.hostname),
+	};
+}
+
